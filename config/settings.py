@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+from django.conf.global_settings import EMAIL_BACKEND
 import environ
 
 env = environ.Env(
@@ -32,7 +33,7 @@ SECRET_KEY = 'django-insecure-77@41#b6yxrm467my7v$2q9n(9alr#6vkij0lk#+^ms)60xjg7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -72,6 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'config.context_processors.categories',
             ],
         },
     },

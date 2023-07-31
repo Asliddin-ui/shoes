@@ -1,7 +1,79 @@
 {% extends 'layouts/base.html' %}
-
+{% load static i18n %}
 {% block content %}
-Hello world
+
+<header class="header bg-white d-flex flex-column">
+  <swiper-container class="mySwiper container d-flex flex-column justify-content-center" pagination="true" space-between="30" pagination-dynamic-bullets="true" loop='true'>
+      {% for a in carusel %}
+        <swiper-slide class='row  px-5 pb-5'>
+          <div class="header__info col-lg-8">
+            <p class="header-info__title">{{a.name}}</p>
+            <p class="header-info__text">{{a.description}}</p>
+            <a href="#!" class="price header-info__price ">{% translate "Harid qilish" %}</a>
+          </div>
+          <div class="header__img col-lg-4" >
+            <img src="{{a.photo.url}}" alt="" srcset="" class='w-100'>
+          </div>
+        </swiper-slide>
+      {% endfor %}
+  </swiper-container>
+</header>
+
+<main class="main">
+<div class="container">
+    <ul class="main__menu d-flex flex-wrap">
+      {% for child in categories %}
+        {% for ch in child.children %}
+          <li><a href="#{{ch.category.name}}" class="main__menu-link">{{ch.category.name}}</a></li>
+        {% endfor %}
+      {% endfor %}
+    </ul>
+</div>
+
+<div class="container main__burgers">
+  {% for category, food in food.items %}
+    <h1 class="header-info__title text-center pb-5" id={{category.name}} >{{category.name}}</h1>
+      <div class="row justify-content-center">
+        {% for foods in food %}
+          <div class="burger col-4">
+              <div class="burger-item">
+                  <img class="burger-item__img" src="{{foods.photo.url}}" alt="">
+                  <a class="add-cart" href="#!">{% translate "Harid qilish" %}</a>
+                  <span class="price burger-item__price">{{foods.price}}</span>
+              </div>
+              <h2 class="burger-item__title">{{foods.name}}</h2>
+              <p class="burger-item__about">{{foods.description}}</p>
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}  
+</div>
+
+</main>
+
+<div class="recipe text-center">
+  <div class="container">
+    <h2 class="recipe__title">{% translate "Nega Street88?" %}</h2>
+    <div class="row row-cols-3 justify-content-between">
+      {% for w in why %}
+      <div class="col bg-gradient py-2 px-3">
+        <img src="{{w.photo.url}}" alt="" class='pb-5 pt-3' style= 'width: 80px; margin:0 auto'>
+        <p class="recipe__text">{{w.name}}</p>
+        <p class="recipe__text">{{w.description}}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<div class="branches">
+  <h2 class="branches__title">{% translate "Joylashuvimiz" %}</h2>
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1497.8910111643686!2d69.28366322390679!3d41.33535307408728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b4d93bfffff%3A0x9508d8088f59d3e1!2sSAIPRO!5e0!3m2!1sru!2s!4v1632462721193!5m2!1sru!2s" width="100%" height="600px" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+</div>
+
+
+
+
 {% endblock content %}
 
 

@@ -1,0 +1,59 @@
+{% extends 'layouts/base.html' %}
+{% load static i18n %}
+{% block content %}
+
+<div class="container main__burgers">
+    {% if object_list %}
+    <h2 class="branches__title">{{cat_name.name}}</h2>
+        <div class="row justify-content-center">
+        {% for a in object_list %}
+            {% if a.isnotburger %}
+                <div class="burger col-4">
+                    <div class="burger-item">
+                        <img class="burger-item__img" src="{{a.photo.url}}" alt="">
+                        <a class="add-cart" href="#!">{% translate "Harid qilish" %}</a>
+                        <span class="price burger-item__price">{{a.price}}</span>
+                    </div>
+                    <h2 class="burger-item__title">{{a.name}}</h2>
+                    <p class="burger-item__about">{{a.description}}</p>
+                </div>
+            {% else %}
+                <div class="branches">
+                    <p class="recipe__text">{{a.description}}</p>    
+                </div>
+            {% endif %}
+            
+        {% endfor %}  
+        </div>
+        {% if page_obj.has_other_pages %}
+            <div class="btn-group mt-3" role="group" aria-label="Item pagination">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-primary">&laquo;</a>
+                {% endif %}
+
+                {% for page_number in page_obj.paginator.page_range %}
+                    {% if page_obj.number == page_number %}
+                        <button class="btn btn-outline-primary active">
+                            <span>{{ page_number }}</span>
+                        </button>
+                    {% else %}
+                        <a href="?page={{ page_number }}" class="btn btn-outline-primary">
+                            {{ page_number }}
+                        </a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-primary">&raquo;</a>
+                {% endif %}
+            </div>
+        {% endif %}
+           
+    {% endif %}
+</div>
+
+
+
+{% endblock content %}
+
+

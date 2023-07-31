@@ -1,0 +1,16 @@
+{% load static i18n %}
+
+
+
+<div class="container footer__logo d-flex justify-content-between">
+    <a href="" class="logo">street88</a>
+    <a class="footer__text" href="tel:+99890914403">+998 90 980 77 23</a>
+</div>     
+<div class="container footer__nav d-flex flex-column align-items-center">
+    <ul class="footer__nav-menu d-flex justify-content-center">
+        {% for data in categories %}
+            <li><a href="{% url 'main:link' data.category.slug data.category.id %}" class = "footer__nav-link">{{data.category.name}} </a></li>
+        {% endfor %}
+    </ul> 
+    <p class="footer__text-about">&copy; 2023 by <a href="https://t.me/asliddinjaloliddinov">Asliddin Jaloliddinov</a></p>          
+</div>
