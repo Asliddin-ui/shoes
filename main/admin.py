@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Language, Category, Burger, WhyModel
+from .models import Language, Category, Burger, PageModel, WhyModel
 from .forms import BurgerForm
 from django.utils.html import format_html
 
@@ -15,6 +15,9 @@ class LanguageAdmin(admin.ModelAdmin):
 class WhyAdmin(admin.ModelAdmin):
     list_display = ['id','name']
 
+@admin.register(PageModel)
+class WhyAdmin(admin.ModelAdmin):
+    list_display = ['id','name']
 
 @admin.action(description="Status: NEW")
 def burger_status_new(modeladmin, request, queryset):

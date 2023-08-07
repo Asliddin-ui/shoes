@@ -4,26 +4,19 @@
 
 <div class="container main__burgers">
     {% if object_list %}
-    <h2 class="branches__title">{{cat_name.name}}</h2>
+    <h2 class="branches__title">{{cat_name}}</h2>
         <div class="row justify-content-center">
-        {% for a in object_list %}
-            {% if a.isnotburger %}
+            {% for a in object_list %}
                 <div class="burger col-4">
                     <div class="burger-item">
                         <img class="burger-item__img" src="{{a.photo.url}}" alt="">
-                        <a class="add-cart" href="#!">{% translate "Harid qilish" %}</a>
+                        <a class="add-cart" href="{% url 'main:burger' a.slug a.id %}">{% translate "Harid qilish" %}</a>
                         <span class="price burger-item__price">{{a.price}}</span>
                     </div>
                     <h2 class="burger-item__title">{{a.name}}</h2>
                     <p class="burger-item__about">{{a.description}}</p>
                 </div>
-            {% else %}
-                <div class="branches">
-                    <p class="recipe__text">{{a.description}}</p>    
-                </div>
-            {% endif %}
-            
-        {% endfor %}  
+            {% endfor %}  
         </div>
         {% if page_obj.has_other_pages %}
             <div class="btn-group mt-3" role="group" aria-label="Item pagination">

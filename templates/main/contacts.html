@@ -1,8 +1,11 @@
 {% extends 'layouts/base.html' %}
 {% load static i18n %}
 {% block content %}
-<div class="branches">
-    <h2 class="branches__title">{% translate "Kontaktlar" %}</h2>
-    <p class="recipe__text">{{contacts}}</p>    
-</div>
+
+
+    {{object.name}}
+
+    {{object.description.html|safe}}
+
+
 {% endblock %}
