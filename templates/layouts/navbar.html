@@ -35,7 +35,7 @@
                                     </li>
                                 {% else %}
                                     <li class="nav-item">
-                                        <a href="{% url 'main:about' data.category.id%}" 
+                                        <a href="{% url 'main:about' data.category.slug %}" 
                                         class="nav__link ">{{ data.category.name }}</a>
                                     </li>
                                 {% endif %}

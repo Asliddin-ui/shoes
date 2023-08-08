@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'main',
     'debug_toolbar',
     'django_quill',
+    'order',
 ]
 
 MIDDLEWARE = [

@@ -150,12 +150,21 @@ class PageModel(models.Model):
     description_ru = QuillField(verbose_name="Ma'lumot ru")
     description_en = QuillField(verbose_name="Ma'lumot en")
 
+    slug = models.SlugField(max_length=255, blank=True, null=True)
 
 
+    def save(
+        self, force_insert=False, force_update=False, using=None, update_fields=None, fix=True
+    ):
+        if fix and not self.slug:
+            self.slug = slugify(self.name, allow_unicode=True)
+        ret = super().save(force_insert, force_update, using, update_fields)
+        return ret
 
-    @property
-    def slug(self):
-        return slugify(self.name, allow_unicode=True)
+
+    # @property
+    # def slug(self):
+    #     return slugify(self.name, allow_unicode=True)
 
     def __str__(self):
         return self.name

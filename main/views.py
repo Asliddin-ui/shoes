@@ -1,5 +1,7 @@
+from unicodedata import category
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Page
+# from django.db.backends.utils import rev_typecast_decimal
 from django.shortcuts import redirect, render
 from django.views.generic import DetailView, TemplateView, ListView
 from main.models import Category, Burger, PageModel, WhyModel
@@ -58,37 +60,39 @@ class AboutUsView(DetailView):
     model = PageModel
     template_name = 'main/contacts.html' 
 
-    # def get_object(self, queryset=None):
-    #     slug = self.kwargs.get('slug', None)
-    #     if slug:
-    #         try:
-    #             return PageModel.objects.select_related('category').get(category__slug=slug)
-    #         except PageModel.DoesNotExist:
-    #             pass
-    #     return None
+    def get_object(self, queryset=None):
+        if not self.object:
+            self.object = super().get_object(queryset=queryset)
+        slug = self.kwargs.get('slug', None)
+        if slug:
+            try:
+                return PageModel.objects.select_related('category').get(category__slug=slug)
+            except PageModel.DoesNotExist:
+                pass
+        return None
 
     def dispatch(self, request, *args, **kwargs):
-        slug = kwargs.get('pk')
-        try:
-            page = PageModel.objects.select_related('category').get(category__id=slug)
-        except (PageModel.DoesNotExist, ObjectDoesNotExist):
-            return redirect("main:index")
+        self.object = None
+        slug = kwargs.get('slug')
+        if not Category.objects.filter(slug=slug).exists():
+            return redirect('main:index')
         
         return super().dispatch(request, *args, **kwargs)
 
 class MainBurgerView(DetailView):
     model = Burger
-    template_name = 'main/book.html'
-    context_object_name = 'burger'
+    template_name = 'main/burger.html'
 
     def get_object(self, queryset=None ):
+        
         if not self.object:
-            self.object = super().get_object(queryset=queryset)
-        return super().get_object(queryset)
+            self.object = super().get_object(queryset=queryset) 
+        return self.object
 
 
-    def dispatch(self, request,*args, **kwargs):
+    def dispatch(self, request, *args, **kwargs):
         self.object = None
+        print(self.object)
         obj = self.get_object()
         if kwargs.get('slug') != obj.slug:
             return redirect('main:burger', obj.slug, obj.id, permanent=True)

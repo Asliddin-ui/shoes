@@ -1,0 +1,22 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="text-center">
+    <div class="container">
+        <h2 class="branches__title">{{object.name}}</h2>
+        <div class="row justify-content-center">
+            <div class="col-5 burger">
+                <img class="burger-item__img" src="{{object.photo.url}}" alt="">
+            </div>
+            <div class="col-7">
+                <p class="header-info__text text-start">{{object.description}}</p>
+                <p class="price header-info__price ">{{object.price}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+{% endblock content %}
+
