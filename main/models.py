@@ -96,6 +96,10 @@ class Burger(models.Model):
         MinValueValidator(1000)
     ], verbose_name='Narxi')
 
+    available = models.IntegerField(default=0, validators=[
+        MinValueValidator(0)
+    ])
+
 
     @property
     def slug(self):

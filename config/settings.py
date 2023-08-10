@@ -49,6 +49,9 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'django_quill',
     'order',
+    "crispy_forms",
+    "crispy_bootstrap5",
+    'registration',
 ]
 
 MIDDLEWARE = [
@@ -151,6 +154,12 @@ MEDIA_URL = 'media/'
 INTERNAL_IPS = [
     '127.0.0.1'
 ]
+
+AUTH_USER_MODEL = 'registration.User'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

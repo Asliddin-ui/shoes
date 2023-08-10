@@ -1,0 +1,21 @@
+{% extends 'layouts/base.html' %}
+{% load static crispy_forms_tags crispy_forms_filters %}
+{% block content %}
+    <div class="col-6 offset-3 py-5">
+        <div class="card bg-white text-black-50">
+            <div class="card-header bg-white text-black">
+                <h1>Registratsiya</h1>
+            </div>
+            <div class="card-body">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form|crispy}}
+                    <div class="d-flex justify-content-between mb-3">
+                        <button class="btn btn-outline-dark px-5">Saqlash</button>
+                        </div>
+                    Agar akkauntingiz bo'lsa <a href="{% url 'registration:login' %}" class="text-decoration-none text-primary">Login</a> orqali kirishingiz mumkin.
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

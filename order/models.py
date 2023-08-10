@@ -1,7 +1,5 @@
-from turtle import ondrag
 from django.db import models
-from django.contrib.auth.models import User
-
+from config import settings
 from main.models import Burger
 
 class Order(models.Model):
@@ -15,8 +13,8 @@ class Order(models.Model):
     PAYMENT_STATUS_CANCELLED = 3
 
 
-    user = models.ForeignKey(User, on_delete=models.RESTRICT)
-    addres = models.TextField()
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.RESTRICT)
+    address = models.TextField()
     zip = models.CharField(max_length=10)
     total_price = models.IntegerField()
     status = models.IntegerField(choices=(

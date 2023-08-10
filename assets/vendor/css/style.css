@@ -230,6 +230,17 @@ a{
     padding: 20px 85px;
 }
 
+.green{
+    color: var(--green);
+    font-family: var(--f100);
+    font-size: 30px;
+    line-height: 32px;
+    transition: color 0.5s, background 0.5s;
+}
+.green:hover{
+    color: var(--white);
+}
+
 .header-info__price:hover{
     color: var(--dark);
 }

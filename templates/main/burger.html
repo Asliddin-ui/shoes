@@ -1,5 +1,5 @@
 {% extends 'layouts/base.html' %}
-{% load static %}
+{% load static cart %}
 
 {% block content %}
 <div class="text-center">
@@ -12,6 +12,21 @@
             <div class="col-7">
                 <p class="header-info__text text-start">{{object.description}}</p>
                 <p class="price header-info__price ">{{object.price}}</p>
+                {% if object|in_cart:request %}
+                    <a href="{% url "order:dec" object.id %}?to={{ request.path }}">
+                        -
+                    </a>
+                        <div class='d-inline'>{{ object|in_cart:request }}</div>
+                    <a href="{% url "order:inc" object.id %}?to={{ request.path }}">
+                        +
+                    </a>
+                {% else %}
+                    <a href="{% url "order:inc" object.id %}?to={{ request.path }}">
+                        <i class="bi bi-bag-fill"></i>
+                    </a>
+                {% endif %}
+                
+                
             </div>
         </div>
     </div>

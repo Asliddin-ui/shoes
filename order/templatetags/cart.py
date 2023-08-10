@@ -4,8 +4,9 @@ register = template.Library()
 
 
 @register.filter
-def in_cart(book, request):
-    return request.session.get("data", {}).get(str(book.id), 0)
+def in_cart(burger, request):
+    print(request.session.get("data", {}))
+    return request.session.get("data", {}).get(str(burger.id), 0)
 
 
 @register.simple_tag

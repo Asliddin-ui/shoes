@@ -30,4 +30,3 @@ def categories(request):
         'categories': result
     }
 
-    
