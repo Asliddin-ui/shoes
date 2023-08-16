@@ -2,6 +2,7 @@ from django.db import models
 from config import settings
 from main.models import Burger
 
+
 class Order(models.Model):
     STATUS_NEW = 0
     STATUS_ACCEPTED = 1

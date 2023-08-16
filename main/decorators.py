@@ -22,5 +22,4 @@ def i18n(cls):
         if hasattr(cls, field_name):
             continue
         setattr(cls, field_name, _get_i18n_property(field_name))
-        print(f"{field_name} {field_suffix}")
     return cls

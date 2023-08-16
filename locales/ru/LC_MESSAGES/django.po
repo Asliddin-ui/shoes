@@ -1,0 +1,99 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-08-15 15:05+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\templates\layouts\navbar.html:63
+msgid "Barchasi"
+msgstr ""
+
+#: .\templates\main\checkout.html:13
+msgid "Sotib olish"
+msgstr ""
+
+#: .\templates\main\checkout.html:20
+msgid "Jami"
+msgstr ""
+
+#: .\templates\main\checkout.html:20
+msgid "so'm"
+msgstr ""
+
+#: .\templates\main\checkout.html:24
+msgid "Karzina bo'sh"
+msgstr ""
+
+#: .\templates\main\index.html:12 .\templates\main\index.html:41
+#: .\templates\main\list.html:13
+msgid "Harid qilish"
+msgstr ""
+
+#: .\templates\main\index.html:56
+msgid "Nega Street88?"
+msgstr ""
+
+#: .\templates\main\index.html:70
+msgid "Joylashuvimiz"
+msgstr ""
+
+#: .\tgbot\handler\catalog.py:15
+msgid "🛒Korzina"
+msgstr ""
+
+#: .\tgbot\handler\start.py:33
+msgid "Xush kelibsiz {}. Botdan foydalanish uchun tilni tanlang: "
+msgstr ""
+
+#: .\tgbot\handler\start.py:38
+msgid "Quyidagi menulardan birini tanlang "
+msgstr ""
+
+#: .\tgbot\handler\start.py:59
+msgid "Til o`zgartirildi"
+msgstr "Изменено"
+
+#: .\tgbot\handler\start.py:65 .\tgbot\keyboards\keyboard.py:7
+msgid "Menu"
+msgstr "Меню"
+
+#: .\tgbot\handler\start.py:66
+msgid "Siz menu tanladingiz"
+msgstr "Вы меню пыфвывыпвы"
+
+#: .\tgbot\keyboards\keyboard.py:7
+msgid "Sozlamalar"
+msgstr ""
+
+#: .\tgbot\keyboards\keyboard.py:8
+msgid "Korzina"
+msgstr ""
+
+#: .\tgbot\keyboards\keyboard.py:9
+msgid "Biz bilan aloqa"
+msgstr ""
+
+#~ msgid "Ro`yxatdan o`tish uchun telefon raqamingizni yuboring."
+#~ msgstr "Для регистрации номер"
+
+#~ msgid "Raqam yuborish"
+#~ msgstr "Поделиться номера"
+
+#~ msgid "Xush kelibsiz {}"
+#~ msgstr "Добро пожаловать {}"

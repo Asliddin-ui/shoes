@@ -1,0 +1,97 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-08-15 15:05+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\templates\layouts\navbar.html:63
+msgid "Barchasi"
+msgstr ""
+
+#: .\templates\main\checkout.html:13
+msgid "Sotib olish"
+msgstr ""
+
+#: .\templates\main\checkout.html:20
+msgid "Jami"
+msgstr ""
+
+#: .\templates\main\checkout.html:20
+msgid "so'm"
+msgstr ""
+
+#: .\templates\main\checkout.html:24
+msgid "Karzina bo'sh"
+msgstr ""
+
+#: .\templates\main\index.html:12 .\templates\main\index.html:41
+#: .\templates\main\list.html:13
+msgid "Harid qilish"
+msgstr ""
+
+#: .\templates\main\index.html:56
+msgid "Nega Street88?"
+msgstr ""
+
+#: .\templates\main\index.html:70
+msgid "Joylashuvimiz"
+msgstr ""
+
+#: .\tgbot\handler\catalog.py:15
+msgid "🛒Korzina"
+msgstr ""
+
+#: .\tgbot\handler\start.py:33
+msgid "Xush kelibsiz {}. Botdan foydalanish uchun tilni tanlang: "
+msgstr ""
+
+#: .\tgbot\handler\start.py:38
+msgid "Quyidagi menulardan birini tanlang "
+msgstr ""
+
+#: .\tgbot\handler\start.py:59
+msgid "Til o`zgartirildi"
+msgstr "Succesfully changed"
+
+#: .\tgbot\handler\start.py:65 .\tgbot\keyboards\keyboard.py:7
+msgid "Menu"
+msgstr "Menu"
+
+#: .\tgbot\handler\start.py:66
+msgid "Siz menu tanladingiz"
+msgstr "We set menu"
+
+#: .\tgbot\keyboards\keyboard.py:7
+msgid "Sozlamalar"
+msgstr ""
+
+#: .\tgbot\keyboards\keyboard.py:8
+msgid "Korzina"
+msgstr ""
+
+#: .\tgbot\keyboards\keyboard.py:9
+msgid "Biz bilan aloqa"
+msgstr ""
+
+#~ msgid "Ro`yxatdan o`tish uchun telefon raqamingizni yuboring."
+#~ msgstr "For registration please send number"
+
+#~ msgid "Raqam yuborish"
+#~ msgstr "Send number"
+
+#~ msgid "Xush kelibsiz {}"
+#~ msgstr "Welcome {}"

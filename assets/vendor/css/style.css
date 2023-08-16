@@ -233,8 +233,8 @@ a{
 .green{
     color: var(--green);
     font-family: var(--f100);
-    font-size: 30px;
-    line-height: 32px;
+    font-size: 20px;
+    line-height: 22px;
     transition: color 0.5s, background 0.5s;
 }
 .green:hover{

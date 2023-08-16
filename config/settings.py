@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-from django.conf.global_settings import EMAIL_BACKEND, INTERNAL_IPS
+from django.conf.global_settings import EMAIL_BACKEND, INTERNAL_IPS, USE_L10N
 import environ
 
 env = environ.Env(
@@ -46,12 +46,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'tgbot',
+    'order',
+    'registration',
+
     'debug_toolbar',
     'django_quill',
-    'order',
+    
     "crispy_forms",
     "crispy_bootstrap5",
-    'registration',
+    
+    
 ]
 
 MIDDLEWARE = [
@@ -60,6 +65,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "debug_toolbar.middleware.DebugToolbarMiddleware",
@@ -124,7 +130,7 @@ LANGUAGE_CODE = 'uz'
 LANGUAGES = (
     ('uz', '🇺🇿 O`zbekcha'),
     ('ru', '🇷🇺 русский'),
-    ('en', '🇬🇧 English')
+    ('en', '🇬🇧 English'),
 )
 
 LOCALE_PATHS = [
@@ -137,6 +143,7 @@ USE_I18N = True
 
 USE_TZ = False
 
+USE_L10N = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -166,4 +173,4 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# TELEGRAM_BOT_TOKEN = env('TELEGRAM_BOT_TOKEN')
+TELEGRAM_BOT_TOKEN = env('TELEGRAM_BOT_TOKEN')

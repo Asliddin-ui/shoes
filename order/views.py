@@ -35,8 +35,9 @@ def cart_change(request, pid, n):
     data[sid] += n
     data[sid] = min(p.available, data[sid])
     if data[sid] <= 0:
-        del data[sid]   
+        del data[sid]
     request.session["data"] = data
+
 
 @method_decorator(login_required(login_url=reverse_lazy('registration:login')), name='dispatch')
 class CheckoutView(CreateView):
@@ -71,7 +72,7 @@ class CheckoutView(CreateView):
             order.total_price = total_price
             order.save()
 
-            for b in  burgers:
+            for b in burgers:
                 b.order_id = order.id
 
             OrderProduct.objects.bulk_create(burgers)
@@ -94,4 +95,3 @@ class CheckoutView(CreateView):
         kwargs["total_price"] = total_price
 
         return kwargs
-    

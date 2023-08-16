@@ -12,3 +12,8 @@ def in_cart(burger, request):
 @register.simple_tag
 def cart_total(request):
     return sum(request.session.get("data", {}).values())
+
+
+@register.filter
+def flag(country_code):
+    return f'&#x1F1{ord(country_code[0])-ord("A")+65};&#x1F1{ord(country_code[1])-ord("A")+65};'

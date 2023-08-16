@@ -1,6 +1,37 @@
 {% load static i18n cart %}
+{% get_available_languages as language %}
+{% get_current_language as lan %}
+
 <div class="header__nav">
     <div class="container">
+        <div class="buttons pt-3 d-flex align-items-center justify-content-end">       
+            {% if user.is_authenticated %}
+            {% cart_total request as cart_items_count %}
+                <a href="{% url  'registration:settings'%}" class="bi bi-person position-relative d-block green"></a>
+                <a href="{% url 'registration:logout' %}" class="bi bi-box-arrow-in-right mx-2 position-relative d-block green"></a>
+            {% else %}
+                <div class="d-flex align-items-center justify-content-center">
+                    <a href="{% url 'registration:login' %}" class=""><i class='bi bi-box-arrow-in-left  mx-2 position-relative d-block green'></i></a>
+                </div>
+            {% endif %}
+            <div class="nav_item dropdown">
+                <a class="position-relative d-block green  dropdown-toggle" href="#" 
+                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {% for lang in language %}
+                        {% if lang.0 == lan %}
+                            {{lang.1|slice:":2"}}
+                        {% endif %}
+    
+                    {% endfor %}
+                </a>
+                <div class="dropdown-menu">
+                    {% for lang in  language %}
+                        <a class="dropdown-item" href="/{{lang.0}}{{request.get_full_path|slice:"3:"}}">{{lang.1|slice:"2:"}}</a>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+        </div>
         <nav class=" d-flex justify-content-between align-items-center">
             <a href="{% url "main:index"%}" class="logo">
                 Street88
@@ -44,26 +75,16 @@
                     </div>
                 </div>
             </nav>
-            <div class="buttons d-flex">
-                {% if user.is_authenticated %}
-                {% cart_total request as cart_items_count %}
-                    <a href="{% url 'registration:logout' %}" class="bi bi-box-arrow-in-right position-relative d-block green"></a>
-                    <a href="{% url  'registration:settings'%}" class="bi bi-person position-relative d-block green"></a>
-                    <a href="{% url 'order:checkout' %}" class="bi bi-shop position-relative d-block green">
-                        {% if cart_items_count > 0 %}
-                            <span class="position-absolute top-0 start-100 mt-1 translate-middle badge rounded-pill bg-danger"
-                                    style="font-size: 10px">
-                                {{ cart_items_count }}
-                            </span>
-                        {% endif %}
-                    </a>
-                {% else %}
-                    <div class="d-flex align-items-center justify-content-center">
-                        <a href="{% url 'registration:login' %}" class=""><i class='bi bi-box-arrow-in-left position-relative d-block green'></i></a>
-                    </div>
+            <a href="{% url 'order:checkout' %}" class="bi bi-cart position-relative d-block green">
+                {% if cart_items_count > 0 %}
+                    <span class="position-absolute top-0 start-100 mt-1 translate-middle badge rounded-pill bg-danger"
+                            style="font-size: 10px">
+                        {{ cart_items_count }}
+                    </span>
                 {% endif %}
-            </div>
+            </a>
         </nav>
+        
     </div>
 </div>
 
