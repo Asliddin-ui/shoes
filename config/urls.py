@@ -31,5 +31,6 @@ urlpatterns += i18n_patterns(
     path('', include('main.urls')),
     path("__debug__/", include("debug_toolbar.urls")),
     path('order/', include('order.urls')),
+    path('api/', include('api.urls')),
     path('registration/', include('registration.urls')),
 )

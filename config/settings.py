@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+
     'main',
     'tgbot',
     'order',
@@ -163,6 +165,14 @@ INTERNAL_IPS = [
 ]
 
 AUTH_USER_MODEL = 'registration.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.BrowsableAPIRenderer',
+        'rest_framework.renderers.JSONRenderer',
+
+    ]
+}
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 

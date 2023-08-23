@@ -8,28 +8,21 @@ from django.utils.translation import gettext as _, activate
 
 
 async def user_load(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    user_id = update.effective_user.id
+    tg_user, _ = await TelegramUser.objects.aget_or_create(defaults={
+        "username": update.effective_user.username,
+        "first_name": update.effective_user.first_name,
+        "last_name": update.effective_user.last_name,
+        "language": update.effective_user.language_code,
+    }, telegram_user_id=update.effective_user.id)
 
-    try:
-        tg_user = await TelegramUser.objects.aget(telegram_user_id=user_id)
-        print('Function ishlavoti')
-        await hello(update, context, edit=True)
-    except TelegramUser.DoesNotExist:
-        print('bu ham ishladi')
-        tg_user = await TelegramUser.objects.acreate(
-            telegram_user_id=user_id,
-            username=update.effective_user.username,
-            first_name=update.effective_user.first_name,
-            last_name=update.effective_user.last_name
-        )
-
-    context.tguser = tg_user
-
+    context.user_data['edit'] = _
+    context.user_data['tg_user'] = tg_user
+    context.edit = True
     activate(tg_user.language)
+    context.user_data['lang'] = False
 
 
-async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE, edit=False) -> None:
-    user_id = update.effective_user.id
+async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     params = {
         'text': _('Xush kelibsiz {}. Botdan foydalanish uchun tilni tanlang: ').format(
             update.effective_user.first_name),
@@ -40,45 +33,29 @@ async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE, edit=False) 
             update.effective_user.first_name),
         'reply_markup': await get_key()
     }
-    try:
-        tg_user = await TelegramUser.objects.aget(telegram_user_id=user_id)
-        edit = True
-        context.tguser = tg_user
-        print('Bu ishladi')
-    except TelegramUser.DoesNotExist:
-        print('bu ham ishladi')
-        tg_user = await TelegramUser.objects.acreate(
-            telegram_user_id=user_id,
-            username=update.effective_user.username,
-            first_name=update.effective_user.first_name,
-            last_name=update.effective_user.last_name
-        )
-        context.tguser = tg_user
-    if edit:
-        try:
-            print("B")
-            await update.effective_message.edit_text(**params2)
-        except:
-            print('A')
-            await update.effective_message.delete()
-            await update.effective_message.reply_text(**params2)
+
+    if not context.user_data['edit'] and not context.user_data['lang']:
+        await update.effective_message.reply_text(**params2)
+    elif context.user_data['lang'] and not context.user_data['edit']:
+        await update.effective_message.delete()
+        await update.effective_message.reply_text(**params2)
     else:
-        print('C')
         await update.effective_message.reply_text(**params)
 
 
 async def change_language(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    user: TelegramUser = context.tguser
+    user: TelegramUser = context.user_data['tg_user']
     user.language = context.match.group(1)
     await user.asave()
     activate(user.language)
 
     await update.callback_query.answer(_('Til o`zgartirildi'))
-    await hello(update, context, True)
+    context.user_data['lang'] = True
+    await hello(update, context)
 
 
 handlers = [
-    # (CustomHandler(user_load), 0),
+    (CustomHandler(user_load), 0),
     CommandHandler('start', hello),
     CallbackQueryHandler(change_language, pattern="^(uz|ru|en)$"),
 ]
